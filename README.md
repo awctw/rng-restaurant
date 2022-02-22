@@ -20,7 +20,7 @@ The `pages/api` directory is mapped to `/api/*`. Files in this directory are tre
 
 ## Configuration
 
-Create a `configs.js` file to hold the tokens needed to access Yelp's API. Add this constant to the file `export const BEARER_TOKEN = `Bearer <API TOKEN>`; `.
+Create a `configs.js` file to hold the tokens needed to access Yelp's API. Add this constant to the file `export const BEARER_TOKEN = Bearer <API TOKEN>; `.
 
 ## Learn More
 
