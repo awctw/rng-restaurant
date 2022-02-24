@@ -7,12 +7,16 @@ import { BEARER_TOKEN } from "../configs";
 
 export default function Home() {
   const [restaurants, setRestaurants] = useState([]);
-  const [run, setRun] = useState(null);
+  const [restaurant, setRestaurant] = useState("");
+  const [run, setRun] = useState(true);
+  const [type, setType] = useState("");
+
   const router = useRouter();
 
   useEffect(() => {
+    console.log(type);
     const response = fetch(
-      `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?latitude=49.166592&longitude=-123.133568&categories=restaurants`,
+      `http://localhost:8080/api.yelp.com/v3/businesses/search?latitude=49.166592&longitude=-123.133568&categories=${type}&limit=50`,
       {
         method: "GET",
         headers: {
@@ -24,22 +28,58 @@ export default function Home() {
       }
     )
       .then((response) => response.json())
-      .then((data) =>
-        setRestaurants(
+      .then((data) => {
+        console.log(data.businesses);
+        return setRestaurants(
           data.businesses.map((restaurant) => {
             return restaurant.name;
           })
-        )
-      );
+        );
+      });
     return () => {
       response;
     };
-  }, [run]);
+  }, [run, type]);
 
-  const onClickHandler = () => {
-    setRun(true);
-    router.push("/feeling-lucky");
-    console.log(restaurants[Math.floor(Math.random() * restaurants.length)]);
+  const onClickLuckyHandler = () => {
+    if (type !== "restaurants") {
+      const offset = Math.floor(Math.random() * 900);
+      setType(`restaurants&offset=${offset}`);
+      setRun((prevState) => !prevState);
+    }
+    setRestaurant(restaurants[Math.floor(Math.random() * restaurants.length)]);
+  };
+
+  const onClickJapaneseHandler = () => {
+    if (type !== "japanese") {
+      setType("japanese");
+      setRun((prevState) => !prevState);
+    }
+    setRestaurant(restaurants[Math.floor(Math.random() * restaurants.length)]);
+  };
+
+  const onClickChineseHandler = () => {
+    if (type !== "chinese") {
+      setType("chinese");
+      setRun((prevState) => !prevState);
+    }
+    setRestaurant(restaurants[Math.floor(Math.random() * restaurants.length)]);
+  };
+
+  const onClickBurgerHandler = () => {
+    if (type !== "burgers") {
+      setType("burgers");
+      setRun((prevState) => !prevState);
+    }
+    setRestaurant(restaurants[Math.floor(Math.random() * restaurants.length)]);
+  };
+
+  const onClickTaiwaneseHandler = () => {
+    if (type !== "taiwanese") {
+      setType("taiwanese");
+      setRun((prevState) => !prevState);
+    }
+    setRestaurant(restaurants[Math.floor(Math.random() * restaurants.length)]);
   };
 
   return (
@@ -62,25 +102,26 @@ export default function Home() {
         </p>
 
         <div className={styles.grid}>
-          <button className={styles.card}>
+          <button className={styles.card} onClick={onClickChineseHandler}>
             <h2>Chinese &rarr;</h2>
           </button>
 
-          <button className={styles.card}>
-            <h2>Western &rarr;</h2>
+          <button className={styles.card} onClick={onClickBurgerHandler}>
+            <h2>Burgers &rarr;</h2>
           </button>
 
-          <button className={styles.card}>
+          <button className={styles.card} onClick={onClickTaiwaneseHandler}>
             <h2>Taiwanese &rarr;</h2>
           </button>
 
-          <button className={styles.card}>
+          <button className={styles.card} onClick={onClickJapaneseHandler}>
             <h2>Japanese &rarr;</h2>
           </button>
-          <button className={styles.card} onClick={onClickHandler}>
+          <button className={styles.card} onClick={onClickLuckyHandler}>
             <h2>Feeling Lucky! &rarr;</h2>
           </button>
         </div>
+        <div className={styles.bubble}>{restaurant}</div>
       </main>
 
       <footer className={styles.footer}>
