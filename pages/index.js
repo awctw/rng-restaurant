@@ -5,6 +5,8 @@ import styles from "../styles/Home.module.css";
 import { useRouter } from "next/router";
 import { BEARER_TOKEN } from "../configs";
 
+import { Star } from "../styles/Star";
+
 export default function Home() {
   const [restaurants, setRestaurants] = useState([]);
   const [restaurant, setRestaurant] = useState("");
@@ -121,7 +123,10 @@ export default function Home() {
             <h2>Feeling Lucky! &rarr;</h2>
           </button>
         </div>
-        <div className={styles.bubble}>{restaurant}</div>
+        <div className={styles.bubble}>
+          {restaurant}
+          <Star />
+        </div>
       </main>
 
       <footer className={styles.footer}>
