@@ -1,10 +1,10 @@
 import Image from "next/image";
-import StarIcon from "./star.svg";
-import StarFilledIcon from "./star-filled.svg";
+import StarIcon from "../../assets/star.svg";
+import StarFilledIcon from "../../assets/star-filled.svg";
 import { useRouter } from "next/router";
 import { useState } from "react";
 
-export const Star = () => {
+export const Star = (props) => {
   const router = useRouter();
 
   const [isHovering, setIsHovered] = useState(false);
@@ -13,7 +13,9 @@ export const Star = () => {
 
   const onClickHandler = () => {
     router.push("/favourites");
+    console.log(props.restaurant);
   };
+
   return (
     <div
       onClick={onClickHandler}
