@@ -1,9 +1,24 @@
 import Head from "next/head";
 import NewFavouriteForm from "../../components/new-favourite/NewFavouriteForm";
 import styles from "../../styles/Home.module.css";
+import { useRouter } from "next/router";
 
 function NewFavouritePage() {
-  const onAddNewFavouriteHandler = (restaurantName) => {};
+  const router = useRouter();
+
+  const onAddNewFavouriteHandler = async (restaurantName) => {
+    const response = await fetch("/api/new-favourite", {
+      method: "POST",
+      body: JSON.stringify({ name: restaurantName }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    await response.json();
+
+    router.push("/favourites");
+  };
 
   return (
     <div className={styles.container}>

@@ -1,4 +1,3 @@
-import { Star } from "../ui/Star";
 import classes from "./FavouriteRestaurant.module.css";
 
 const FavouriteRestaurant = (props) => {
@@ -6,7 +5,6 @@ const FavouriteRestaurant = (props) => {
     <div className={classes.restaurant}>
       {props.restaurant}
       {props.children}
-      {/* <Star restaurant={props.restaurant} /> */}
     </div>
   );
 };

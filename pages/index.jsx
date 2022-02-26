@@ -9,6 +9,7 @@ export default function Home() {
   const [restaurants, setRestaurants] = useState([]);
   const [restaurant, setRestaurant] = useState("");
   const [run, setRun] = useState(true);
+  const [show, setShow] = useState(false);
   const [type, setType] = useState("");
 
   useEffect(() => {
@@ -46,6 +47,7 @@ export default function Home() {
       setRun((prevState) => !prevState);
     }
     setRestaurant(restaurants[Math.floor(Math.random() * restaurants.length)]);
+    setShow(true);
   };
 
   const onClickJapaneseHandler = () => {
@@ -54,6 +56,7 @@ export default function Home() {
       setRun((prevState) => !prevState);
     }
     setRestaurant(restaurants[Math.floor(Math.random() * restaurants.length)]);
+    setShow(true);
   };
 
   const onClickChineseHandler = () => {
@@ -62,6 +65,7 @@ export default function Home() {
       setRun((prevState) => !prevState);
     }
     setRestaurant(restaurants[Math.floor(Math.random() * restaurants.length)]);
+    setShow(true);
   };
 
   const onClickBurgerHandler = () => {
@@ -70,6 +74,7 @@ export default function Home() {
       setRun((prevState) => !prevState);
     }
     setRestaurant(restaurants[Math.floor(Math.random() * restaurants.length)]);
+    setShow(true);
   };
 
   const onClickTaiwaneseHandler = () => {
@@ -78,6 +83,7 @@ export default function Home() {
       setRun((prevState) => !prevState);
     }
     setRestaurant(restaurants[Math.floor(Math.random() * restaurants.length)]);
+    setShow(true);
   };
 
   return (
@@ -119,9 +125,11 @@ export default function Home() {
             <h2>Feeling Lucky! &rarr;</h2>
           </button>
         </div>
-        <FavouriteRestaurant restaurant={restaurant}>
-          <Star restaurant={restaurant} />
-        </FavouriteRestaurant>
+        {show && (
+          <FavouriteRestaurant restaurant={restaurant}>
+            <Star restaurant={restaurant} />
+          </FavouriteRestaurant>
+        )}
       </main>
     </div>
   );

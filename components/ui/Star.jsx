@@ -11,9 +11,17 @@ export const Star = (props) => {
   const onMouseEnter = () => setIsHovered(true);
   const onMouseLeave = () => setIsHovered(false);
 
-  const onClickHandler = () => {
+  const onClickHandler = async () => {
+    const response = await fetch("/api/new-favourite", {
+      method: "POST",
+      body: JSON.stringify({ name: props.restaurant }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    await response.json();
     router.push("/favourites");
-    console.log(props.restaurant);
   };
 
   return (
