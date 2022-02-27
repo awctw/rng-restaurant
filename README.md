@@ -4,6 +4,8 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 No longer want to spend time deciding where to eat from? Use this website to randomly generate restaurants from 5 different categories (Chinese, Burgers, Taiwanese, Japanese, and Feeling Lucky!). If users don't want to choose from a category they can also save generated restaurants or manually add their favourite restaurants to randomly generate from too!
 
+This website was built using React.js, Next.js, Javascript, MongoDB, and utilizing Yelp's API.
+
 ## Getting Started
 
 First, run the development server:
