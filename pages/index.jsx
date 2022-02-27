@@ -13,7 +13,6 @@ export default function Home() {
   const [type, setType] = useState("");
 
   useEffect(() => {
-    console.log(type);
     const response = fetch(
       `http://localhost:8080/api.yelp.com/v3/businesses/search?latitude=49.166592&longitude=-123.133568&categories=${type}&limit=50`,
       {
@@ -28,7 +27,6 @@ export default function Home() {
     )
       .then((response) => response.json())
       .then((data) => {
-        console.log(data.businesses);
         return setRestaurants(
           data.businesses.map((restaurant) => {
             return restaurant.name;
